@@ -1,10 +1,12 @@
-    const iframe = document.querySelector('iframe');
-    const player = new Vimeo.Player(iframe);
+import vimeoPlayer from "@vimeo/player";
 
-    player.on('play', function() {
-        console.log('played the video!');
-    });
+const iframe = document.querySelector('iframe');
+const player = new Vimeo.Player(iframe);
 
-    player.getVideoTitle().then(function(title) {
-        console.log('title:', title);
-    });
+player.on('play', function() {
+    console.log('played the video!');
+});
+
+player.getVideoTitle().then(function(title) {
+    console.log('title:', title);
+});
