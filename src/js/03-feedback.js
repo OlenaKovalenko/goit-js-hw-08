@@ -12,7 +12,7 @@ const formData = {};
 
 function onFormInput(event) {
 
-    formData[event.target.name] = event.target.value;
+    formData[event.target.name] = event.target.value.trim();
     localStorage.setItem(STORAGE_KEY, JSON.stringify(formData));
 }
 
