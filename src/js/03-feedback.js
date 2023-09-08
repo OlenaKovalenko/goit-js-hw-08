@@ -3,12 +3,9 @@ import throttle from "lodash.throttle";
 const STORAGE_KEY = "feedback-form-state";
 
 const form = document.querySelector(".feedback-form");
-const inputs = document.querySelectorAll("input");
-const inputsArr = [...inputs];
-console.log(inputs);
+
 form.addEventListener('input', throttle(onFormInput, 500));
 form.addEventListener('submit', onFormSubmit);
-
 
 
 const formData = {};
@@ -22,40 +19,15 @@ function onFormInput(event) {
 function populateInput(event) {
     const savedInput = localStorage.getItem(STORAGE_KEY);
     const parseObject = JSON.parse(savedInput);
-    console.log(savedInput);
-    console.log(parseObject);
 
     if (savedInput) {
 
-        for (let i = 0; i < inputsArr.length; i += 1) {
-            for (const key in parseObject) {
-                inputsArr[i].value = parseObject[key];
-                console.log(key);
-                console.log(parseObject[key]);
-                return;
-            }
-        }
-    
+        const emailInput = document.querySelector('input[name="email"]');
+        const messageInput = document.querySelector('textarea[name="message"]');
 
-
-
-        // inputsArr.forEach(input => {
-        //     for (const key in parseObject) {
-        //         console.log(key);
-        //         console.log(parseObject[key]);
-        //         input.value = parseObject[key];
-        //     }
-        // })
-
-
-
-
-        // for (const key in parseObject) {
-        //     inputsArr.forEach(input => {
-        //         input.value = parseObject[key]
-        //     });
-         
-        // }
+        emailInput.value = parseObject.email ?? '';
+        messageInput.value = parseObject.message || '';
+      
     }
 }
 
