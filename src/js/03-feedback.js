@@ -26,12 +26,36 @@ function populateInput(event) {
     console.log(parseObject);
 
     if (savedInput) {
-        for (const key in parseObject) {
-            inputsArr.forEach(input => {
-                input.value = parseObject[key]
-            });
-         
+
+        for (let i = 0; i < inputsArr.length; i += 1) {
+            for (const key in parseObject) {
+                inputsArr[i].value = parseObject[key];
+                console.log(key);
+                console.log(parseObject[key]);
+                return;
+            }
         }
+    
+
+
+
+        // inputsArr.forEach(input => {
+        //     for (const key in parseObject) {
+        //         console.log(key);
+        //         console.log(parseObject[key]);
+        //         input.value = parseObject[key];
+        //     }
+        // })
+
+
+
+
+        // for (const key in parseObject) {
+        //     inputsArr.forEach(input => {
+        //         input.value = parseObject[key]
+        //     });
+         
+        // }
     }
 }
 
