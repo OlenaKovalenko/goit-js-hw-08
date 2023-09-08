@@ -25,8 +25,8 @@ function populateInput(event) {
         const emailInput = document.querySelector('input[name="email"]');
         const messageInput = document.querySelector('textarea[name="message"]');
 
-        emailInput.value = parseObject.email ?? '';
-        messageInput.value = parseObject.message || '';
+        emailInput.value = parseObject.email || '';
+        messageInput.value = parseObject.message.trim() || '';
       
     }
 }
@@ -40,7 +40,7 @@ function onFormSubmit(event) {
     const mail = formElements.email.value;
     const message = formElements.message.value;
 
-    if (mail === "" || message === "") {
+    if (mail === "" || message.trim() === "") {
         alert("Please fill in all the fields!");
         return;
         
