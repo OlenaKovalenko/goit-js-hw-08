@@ -8,26 +8,24 @@ form.addEventListener('input', throttle(onFormInput, 500));
 form.addEventListener('submit', onFormSubmit);
 
 
-const formData = {};
+const formInfo = {};
 
 function onFormInput(event) {
 
-    formData[event.target.name] = event.target.value.trim();
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(formData));
+    formInfo[event.target.name] = event.target.value.trim();
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(formInfo));
 }
 
-function populateInput(event) {
-    const savedInput = localStorage.getItem(STORAGE_KEY);
-    const parseObject = JSON.parse(savedInput);
-
-    if (savedInput) {
-
+function populateInput() {
+    const parseObject = JSON.parse(localStorage.getItem(STORAGE_KEY));
+  
+    if (parseObject) {
+ 
         const emailInput = document.querySelector('input[name="email"]');
         const messageInput = document.querySelector('textarea[name="message"]');
 
-        emailInput.value = parseObject.email || '';
-        messageInput.value = parseObject.message.trim() || '';
-      
+        emailInput.value = parseObject.email ?? '';
+        messageInput.value = parseObject.message ?? '';
     }
 }
 
@@ -45,9 +43,9 @@ function onFormSubmit(event) {
         return;
         
     } else { 
-        event.currentTarget.reset();
         localStorage.removeItem(STORAGE_KEY);
-        console.log(formData);
+        console.log(formInfo);
+        event.currentTarget.reset();
     }
 }
 
