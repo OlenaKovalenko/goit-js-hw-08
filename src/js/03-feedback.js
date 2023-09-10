@@ -38,8 +38,8 @@ function onFormSubmit(event) {
         return;
         
     } else { 
-        localStorage.removeItem(STORAGE_KEY);
         console.log(formInfo);
+        localStorage.removeItem(STORAGE_KEY);
         event.currentTarget.reset();
     }
 }
