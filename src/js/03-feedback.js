@@ -11,7 +11,9 @@ form.addEventListener('submit', onFormSubmit);
 const formInfo = {};
 
 function onFormInput(event) {
-    formInfo[event.target.name] = event.target.value.trim();
+    const fieldName = event.target.name;
+    const fieldValue = event.target.value.trim();
+    formInfo[fieldName] = fieldValue;
     localStorage.setItem(STORAGE_KEY, JSON.stringify(formInfo));
 }
 
@@ -19,11 +21,12 @@ function populateInput() {
     const parseObject = JSON.parse(localStorage.getItem(STORAGE_KEY));
   
     if (parseObject) {
-        form.elements.email.value = parseObject.email ?? '';
-        form.elements.message.value = parseObject.message ?? '';
+        form.elements.email.value = parseObject.email || '';
+        form.elements.message.value = parseObject.message || '';
     }
 }
 
+form.addEventListener('input', populateInput);
 populateInput();
 
 function onFormSubmit(event) {
