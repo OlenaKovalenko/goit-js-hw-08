@@ -31,7 +31,7 @@ function populateInput() {
     }
 }
 
-refs.form.addEventListener('input', populateInput);
+// refs.form.addEventListener('input', populateInput);
 populateInput();
 
 function onFormSubmit(event) {
